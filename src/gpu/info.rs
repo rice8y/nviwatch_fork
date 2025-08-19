@@ -4,6 +4,8 @@ use crate::AppState;
 use nvml_wrapper::enum_wrappers::device::TemperatureSensor;
 use nvml_wrapper::Nvml;
 use std::error::Error;
+use hostname::get;
+use whoami;
 
 pub struct GpuInfo {
     pub index: usize,
@@ -16,6 +18,8 @@ pub struct GpuInfo {
     pub power_limit: u32,
     pub clock_freq: u32,
     pub processes: Vec<GpuProcessInfo>,
+    pub server_name: String,
+    pub username: String,
 }
 pub fn collect_gpu_info(
     nvml: &Nvml,
@@ -34,6 +38,8 @@ pub fn collect_gpu_info(
         let power_usage = device.power_usage()? / 1000; // Convert mW to W
         let power_limit = device.enforced_power_limit()? / 1000; // Convert mW to W
         let clock_freq = device.clock_info(nvml::enum_wrappers::device::Clock::Graphics)?;
+        let server_name = get()?.to_string_lossy().into_owned();
+        let username = whoami::username();
 
         let compute_processes: Vec<GpuProcessInfo> = device
             .running_compute_processes()?
@@ -103,6 +109,8 @@ pub fn collect_gpu_info(
             power_limit,
             clock_freq,
             processes: [compute_processes, graphics_processes].concat(),
+            server_name,
+            username,
         });
     }
 
