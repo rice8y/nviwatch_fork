@@ -6,6 +6,7 @@ use ratatui::layout::Rect;
 use ratatui::layout::{Constraint, Direction, Layout};
 use ratatui::style::{Color, Modifier, Style};
 use ratatui::widgets::{Block, Borders, Cell, Paragraph, Row, Table};
+use ratatui::text::Span;
 use ratatui::Frame;
 
 pub fn ui(f: &mut Frame, app_state: &AppState) {
