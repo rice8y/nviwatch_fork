@@ -25,3 +25,5 @@ ratatui = "0.28.1"
 textwrap = "0.16.1"
 influxdb = { version = "0.7.1", features = ["derive"] }
 tokio = { version = "1", features = ["full"] }
+hostname = "0.3"
+whoami = "1.2.1"
