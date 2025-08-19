@@ -1,6 +1,6 @@
 [package]
 name = "nviwatch"
-version = "0.2.0"
+version = "0.2.0-rice8y"
 edition = "2021"
 description = "A blazingly fast Rust-based TUI for managing and monitoring NVIDIA GPU processes"
 license = "GPL-3.0"
