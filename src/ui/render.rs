@@ -33,7 +33,21 @@ pub fn ui(f: &mut Frame, app_state: &AppState) {
 }
 
 pub fn render_gpu_info(f: &mut Frame, area: Rect, gpu_infos: &[GpuInfo]) {
-    let block = Block::default().borders(Borders::ALL).title("GPU Info");
+    let server_name = gpu_infos.first().map_or("Unknown", |info| &info.server_name);
+    let username = gpu_infos.first().map_or("Unknown", |info| &info.username);
+
+    let title = vec![
+        Span::raw("GPU Info ["),
+        Span::styled(username.to_string(), Style::default().fg(Color::LightMagenta)),
+        Span::raw("@"),
+        Span::styled(server_name.to_string(), Style::default().fg(Color::LightGreen)),
+        // Span::styled(format!("{}@{}", username.to_string(), server_name.to_string()), Style::default().fg(Color::LightCyan)),
+        Span::raw("]"),
+    ];
+    let block = Block::default()
+        .borders(Borders::ALL)
+        .title(title);
+
     f.render_widget(block.clone(), area);
     let gpu_area = block.inner(area);
 
