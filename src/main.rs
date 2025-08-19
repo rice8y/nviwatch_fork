@@ -26,7 +26,7 @@ use std::time::{Duration, Instant};
 
 fn main() -> Result<(), Box<dyn Error>> {
     let matches = Command::new("nviwatch")
-        .version("0.1.0")
+        .version("0.2.0-rice8y")
         .author("Manpreet Singh")
         .about("NviWatch: A blazingly fast rust based TUI for managing and monitoring NVIDIA GPU processes")
         .arg(
