@@ -18,7 +18,7 @@ categories = ["command-line-utilities", "visualization", "hardware-support"]
 clap = "4.5.17"
 crossterm = "0.28.1"
 nix = { version = "0.29.0", features = ["process", "signal", "user"] }
-nvml-wrapper = { git = "https://github.com/rice8y/nvml-wrapper_fork.git" }
+nvml-wrapper = "0.11.0"
 prettytable-rs = "0.10.0"
 procfs = "0.16.0"
 ratatui = "0.28.1"
