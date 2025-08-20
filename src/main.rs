@@ -95,13 +95,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let influx_bucket = matches.get_one::<String>("influx-bucket").cloned();
     let influx_token = matches.get_one::<String>("influx-token").cloned();
 
-    let nvml = match Nvml::init() {
-        Ok(nvml) => nvml,
-        Err(original_err) => match Nvml::init_from_env() {
-            Ok(nvml) => nvml,
-            Err(_) => return Err(Box::new(original_err)),
-        },
-    };
+    let nvml = Nvml::init()?;
 
     let mut stdout = stdout();
     execute!(stdout, EnterAlternateScreen)?;
